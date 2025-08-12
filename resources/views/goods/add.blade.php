@@ -19,7 +19,7 @@
       </ul>
     @endif
   {{-- 商品情報入力フォーム --}}
-  <form action="{{route('goods_add_view')}}" method="post">
+  <form action="{{route('goods_add_view')}}" method="post" class="goods-form">
     <input type="hidden" name="_token" value="{{csrf_token()}}"> 
     <table class="table table-hover">
       <tr>
@@ -40,7 +40,7 @@
       </tr>
       <tr>
         <th>紹介文</th>
-        <td><textarea class="form-control" name="intro_txt" row="1">{!! nl2br(e(request()->intro_txt)) !!}</textarea>
+  <td><textarea class="form-control" name="intro_txt" rows="8">{!! nl2br(e(request()->intro_txt)) !!}</textarea>
       </tr>
       <tr>
         <th>表示</th>

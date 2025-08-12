@@ -19,7 +19,7 @@
     </ul>
   @endif
   {{-- 商品情報入力フォーム --}}
-  <form action="{{route('goods_edit_view')}}" method="post">
+  <form action="{{route('goods_edit_view')}}" method="post" class="goods-form">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <input type="hidden" name="un_id" value="{{ $goods_data->un_id }}">
     <table class="table table-hover">
