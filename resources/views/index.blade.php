@@ -118,7 +118,7 @@
     </tbody>
     </table>
   </form>
-  {{ $goods_list->appends(request()->input())->links('vendor.pagination.bootstrap-4') }}
+  {{ $goods_list->appends(request()->input())->links() }}
   @else
     <p style="color:#FF0000;">商品情報がありません</p>
   @endif
