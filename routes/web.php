@@ -24,22 +24,4 @@ Route::get('/goods/detail', 'Goods\GoodsDetailController')->name('goods_detail')
 Route::get('/goods/delete', 'Goods\GoodsDeleteController')->name('goods_delete');        //削除確認
 Route::post('/goods/delete/do', 'Goods\Delete\GoodsDeleteDoController')->name('goods_delete_do');   //削除
 
-Route::get('/about', function () {
-    return view('about');
-});
 
-Route::get('/about', function () {
-    return view('about');
-});
-
-Route::get('/services', function () {
-    return view('services');
-});
-
-Route::get('/contact', function () {
-    return view('contact');
-});
-
-Route::get('/about', function () {
-    return view('about');
-});

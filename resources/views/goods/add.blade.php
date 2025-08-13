@@ -40,7 +40,7 @@
       </tr>
       <tr>
         <th>紹介文</th>
-  <td><textarea class="form-control" name="intro_txt" rows="8">{!! nl2br(e(request()->intro_txt)) !!}</textarea>
+      <td><textarea class="form-control" name="intro_txt" rows="8">{!! nl2br(e(request()->intro_txt)) !!}</textarea>
       </tr>
       <tr>
         <th>表示</th>

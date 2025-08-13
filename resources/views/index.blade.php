@@ -85,7 +85,7 @@
 </div>
 {{-- 商品情報一覧 --}}
 @if(count($goods_list) > 0)
-{{ $goods_list->appends(request()->input())->links() }}
+{{ $goods_list->appends(request()->input())->links('vendor.pagination.bootstrap-4') }}
  <form>
     <table class="table table-hover">
     <thead>
@@ -118,7 +118,7 @@
     </tbody>
     </table>
   </form>
-  {{ $goods_list->appends(request()->input())->links() }}
+  {{ $goods_list->appends(request()->input())->links('vendor.pagination.bootstrap-4') }}
   @else
     <p style="color:#FF0000;">商品情報がありません</p>
   @endif

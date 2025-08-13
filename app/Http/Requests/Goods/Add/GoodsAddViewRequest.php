@@ -23,6 +23,7 @@ class GoodsAddViewRequest extends FormRequest
      */
     public function rules()
     {
+        //goods_numberはカテゴリ英字1桁数字2桁(_入れて)後6桁の数字は商品番号(後々この規則に変更)
         return [
             'goods_number'   => 'required|max:30',
             'goods_name'     => 'required|string|max:100',
