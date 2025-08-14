@@ -154,12 +154,12 @@
     <tbody>
       @foreach ($goods_list as $value)
       <tr> 
-          <td>{{$value->goods_number}}</td>
-          <td>{{$value->goods_name}}</td>
-          <td>{{$value->goods_price}}</td>
-          <td>{{$value->goods_stock}}</td>
-          <td>{{date('Y年m月d日',strtotime($value->up_date))}}</td>
-          <td>{{date('Y年m月d日',strtotime($value->ins_date))}}</td>
+          <td data-label="商品番号">{{$value->goods_number}}</td>
+          <td data-label="商品名">{{$value->goods_name}}</td>
+          <td data-label="金額">{{$value->goods_price}}</td>
+          <td data-label="個数">{{$value->goods_stock}}</td>
+          <td data-label="更新日付">{{date('Y年m月d日',strtotime($value->up_date))}}</td>
+          <td data-label="追加日付">{{date('Y年m月d日',strtotime($value->ins_date))}}</td>
           <td>
             <a class="btn btn-success" href="{{route('goods_detail')}}?un_id={{$value->un_id}}" role="button">詳細</a>
             <a class="btn btn-info" href="{{route('goods_edit')}}?un_id={{$value->un_id}}" role="button">編集</a>
