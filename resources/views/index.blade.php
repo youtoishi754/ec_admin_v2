@@ -5,6 +5,8 @@
   <div class="container">
   {{-- 検索条件テーブル --}}
   <h3 style="border-bottom: 1px solid #000;border-left: 10px solid #000;padding: 7px;margin-top:10px;">商品情報一覧</h3>
+  {{-- ソート機能用CSSの読み込み --}}
+  <link href="{{asset('public/css/sort.css')}}" rel="stylesheet">
   {{-- エラー表示 --}}
   @if(count($errors) > 0)
     <ul>
@@ -92,10 +94,26 @@
       <tr>
         <th>商品番号</th>
         <th>商品名</th>
-        <th>金額</th>
-        <th>個数</th>
-        <th>更新日付</th>
-        <th>追加日付</th>
+        <th class="sort-header">
+          金額
+          <a href="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'price', 'sort_direction' => 'asc'])) }}" class="{{ request('sort_by') == 'price' && request('sort_direction') == 'asc' ? 'active' : '' }}">↑</a>
+          <a href="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'price', 'sort_direction' => 'desc'])) }}" class="{{ request('sort_by') == 'price' && request('sort_direction') == 'desc' ? 'active' : '' }}">↓</a>
+        </th>
+        <th class="sort-header">
+          個数
+          <a href="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'stock', 'sort_direction' => 'asc'])) }}" class="{{ request('sort_by') == 'stock' && request('sort_direction') == 'asc' ? 'active' : '' }}">↑</a>
+          <a href="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'stock', 'sort_direction' => 'desc'])) }}" class="{{ request('sort_by') == 'stock' && request('sort_direction') == 'desc' ? 'active' : '' }}">↓</a>
+        </th>
+        <th class="sort-header">
+          更新日付
+          <a href="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'update', 'sort_direction' => 'asc'])) }}" class="{{ request('sort_by') == 'update' && request('sort_direction') == 'asc' ? 'active' : '' }}">↑</a>
+          <a href="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'update', 'sort_direction' => 'desc'])) }}" class="{{ request('sort_by') == 'update' && request('sort_direction') == 'desc' ? 'active' : '' }}">↓</a>
+        </th>
+        <th class="sort-header">
+          追加日付
+          <a href="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'insert', 'sort_direction' => 'asc'])) }}" class="{{ request('sort_by') == 'insert' && request('sort_direction') == 'asc' ? 'active' : '' }}">↑</a>
+          <a href="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'insert', 'sort_direction' => 'desc'])) }}" class="{{ request('sort_by') == 'insert' && request('sort_direction') == 'desc' ? 'active' : '' }}">↓</a>
+        </th>
         <th></th>
       </tr>
     </thead>

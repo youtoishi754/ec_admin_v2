@@ -26,6 +26,12 @@ class GoodsController extends BaseController
             'max_price'    => $request->max_price
         );
 
+        // ソートオプションの設定
+        if ($request->has('sort_by') && $request->has('sort_direction')) {
+            $search_options['sort_by'] = $request->sort_by;
+            $search_options['sort_direction'] = $request->sort_direction;
+        }
+
         // 日付存在チェック
         if ($request->s_up_year != "" && $request->s_up_month != "" && $request->s_up_month != "")
         {
