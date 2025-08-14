@@ -88,6 +88,24 @@
 {{-- 商品情報一覧 --}}
 @if(count($goods_list) > 0)
 {{ $goods_list->appends(request()->input())->links('vendor.pagination.bootstrap-4') }}
+
+{{-- モバイル用ソートコントロール --}}
+<div class="mobile-sort-controls">
+  <label for="mobile-sort">並び替え:</label>
+  <select id="mobile-sort" class="mobile-sort-select" onchange="window.location.href=this.value">
+    <option value="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']))) }}">-- 選択してください --</option>
+    <option value="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'price', 'sort_direction' => 'asc'])) }}" {{ request('sort_by') == 'price' && request('sort_direction') == 'asc' ? 'selected' : '' }}>金額 (昇順)</option>
+    <option value="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'price', 'sort_direction' => 'desc'])) }}" {{ request('sort_by') == 'price' && request('sort_direction') == 'desc' ? 'selected' : '' }}>金額 (降順)</option>
+    <option value="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'stock', 'sort_direction' => 'asc'])) }}" {{ request('sort_by') == 'stock' && request('sort_direction') == 'asc' ? 'selected' : '' }}>個数 (昇順)</option>
+    <option value="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'stock', 'sort_direction' => 'desc'])) }}" {{ request('sort_by') == 'stock' && request('sort_direction') == 'desc' ? 'selected' : '' }}>個数 (降順)</option>
+    <option value="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'update', 'sort_direction' => 'asc'])) }}" {{ request('sort_by') == 'update' && request('sort_direction') == 'asc' ? 'selected' : '' }}>更新日付 (昇順)</option>
+    <option value="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'update', 'sort_direction' => 'desc'])) }}" {{ request('sort_by') == 'update' && request('sort_direction') == 'desc' ? 'selected' : '' }}>更新日付 (降順)</option>
+    <option value="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'insert', 'sort_direction' => 'asc'])) }}" {{ request('sort_by') == 'insert' && request('sort_direction') == 'asc' ? 'selected' : '' }}>追加日付 (昇順)</option>
+    <option value="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'insert', 'sort_direction' => 'desc'])) }}" {{ request('sort_by') == 'insert' && request('sort_direction') == 'desc' ? 'selected' : '' }}>追加日付 (降順)</option>
+  </select>
+</div>
+
+<div class="table-responsive">
  <form>
     <table class="table table-hover">
     <thead>
@@ -95,32 +113,40 @@
         <th>商品番号</th>
         <th>商品名</th>
         <th class="sort-header">
-          金額
-          <a href="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'price', 'sort_direction' => 'asc'])) }}" 
-             class="sort-button sort-button-asc {{ request('sort_by') == 'price' && request('sort_direction') == 'asc' ? 'active' : '' }}">▲</a>
-          <a href="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'price', 'sort_direction' => 'desc'])) }}" 
-             class="sort-button sort-button-desc {{ request('sort_by') == 'price' && request('sort_direction') == 'desc' ? 'active' : '' }}">▼</a>
+          <span>金額</span>
+          <div class="sort-buttons-group">
+            <a href="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'price', 'sort_direction' => 'asc'])) }}" 
+               class="sort-button sort-button-asc {{ request('sort_by') == 'price' && request('sort_direction') == 'asc' ? 'active' : '' }}">▲</a>
+            <a href="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'price', 'sort_direction' => 'desc'])) }}" 
+               class="sort-button sort-button-desc {{ request('sort_by') == 'price' && request('sort_direction') == 'desc' ? 'active' : '' }}">▼</a>
+          </div>
         </th>
         <th class="sort-header">
-          個数
-          <a href="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'stock', 'sort_direction' => 'asc'])) }}" 
-             class="sort-button sort-button-asc {{ request('sort_by') == 'stock' && request('sort_direction') == 'asc' ? 'active' : '' }}">▲</a>
-          <a href="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'stock', 'sort_direction' => 'desc'])) }}" 
-             class="sort-button sort-button-desc {{ request('sort_by') == 'stock' && request('sort_direction') == 'desc' ? 'active' : '' }}">▼</a>
+          <span>個数</span>
+          <div class="sort-buttons-group">
+            <a href="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'stock', 'sort_direction' => 'asc'])) }}" 
+               class="sort-button sort-button-asc {{ request('sort_by') == 'stock' && request('sort_direction') == 'asc' ? 'active' : '' }}">▲</a>
+            <a href="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'stock', 'sort_direction' => 'desc'])) }}" 
+               class="sort-button sort-button-desc {{ request('sort_by') == 'stock' && request('sort_direction') == 'desc' ? 'active' : '' }}">▼</a>
+          </div>
         </th>
         <th class="sort-header">
-          更新日付
-          <a href="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'update', 'sort_direction' => 'asc'])) }}" 
-             class="sort-button sort-button-asc {{ request('sort_by') == 'update' && request('sort_direction') == 'asc' ? 'active' : '' }}">▲</a>
-          <a href="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'update', 'sort_direction' => 'desc'])) }}" 
-             class="sort-button sort-button-desc {{ request('sort_by') == 'update' && request('sort_direction') == 'desc' ? 'active' : '' }}">▼</a>
+          <span>更新日付</span>
+          <div class="sort-buttons-group">
+            <a href="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'update', 'sort_direction' => 'asc'])) }}" 
+               class="sort-button sort-button-asc {{ request('sort_by') == 'update' && request('sort_direction') == 'asc' ? 'active' : '' }}">▲</a>
+            <a href="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'update', 'sort_direction' => 'desc'])) }}" 
+               class="sort-button sort-button-desc {{ request('sort_by') == 'update' && request('sort_direction') == 'desc' ? 'active' : '' }}">▼</a>
+          </div>
         </th>
         <th class="sort-header">
-          追加日付
-          <a href="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'insert', 'sort_direction' => 'asc'])) }}" 
-             class="sort-button sort-button-asc {{ request('sort_by') == 'insert' && request('sort_direction') == 'asc' ? 'active' : '' }}">▲</a>
-          <a href="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'insert', 'sort_direction' => 'desc'])) }}" 
-             class="sort-button sort-button-desc {{ request('sort_by') == 'insert' && request('sort_direction') == 'desc' ? 'active' : '' }}">▼</a>
+          <span>追加日付</span>
+          <div class="sort-buttons-group">
+            <a href="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'insert', 'sort_direction' => 'asc'])) }}" 
+               class="sort-button sort-button-asc {{ request('sort_by') == 'insert' && request('sort_direction') == 'asc' ? 'active' : '' }}">▲</a>
+            <a href="{{ route('index', array_merge(request()->except(['sort_by', 'sort_direction', 'page']), ['sort_by' => 'insert', 'sort_direction' => 'desc'])) }}" 
+               class="sort-button sort-button-desc {{ request('sort_by') == 'insert' && request('sort_direction') == 'desc' ? 'active' : '' }}">▼</a>
+          </div>
         </th>
         <th></th>
       </tr>
@@ -144,6 +170,7 @@
     </tbody>
     </table>
   </form>
+</div><!-- /.table-responsive -->
   {{ $goods_list->appends(request()->input())->links() }}
   @else
     <p style="color:#FF0000;">商品情報がありません</p>

@@ -1,0 +1,107 @@
+/* 商品情報一覧のソート機能用CSS */
+
+/* ソート可能なヘッダーの基本スタイル */
+th.sort-header {
+  position: relative;
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* ソートボタンの基本スタイル */
+.sort-button {
+  display: inline-block;
+  margin-left: 5px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  border-radius: 3px;
+  color: white;
+  text-decoration: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.sort-button:hover {
+  opacity: 0.8;
+  text-decoration: none;
+  color: white;
+}
+
+/* 昇順ボタン（青） */
+.sort-button-asc {
+  background-color: #007bff;
+}
+
+/* 降順ボタン（赤） */
+.sort-button-desc {
+  background-color: #dc3545;
+}
+
+/* アクティブなソートボタン */
+.sort-button.active {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+}
+
+/* ソートヘッダーのホバー効果 */
+th.sort-header:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* モバイル用ソートコントロール */
+.mobile-sort-controls {
+  display: none;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+}
+
+/* レスポンシブ対応 */
+@media screen and (max-width: 767px) {
+  /* モバイル用ソートコントロールを表示 */
+  .mobile-sort-controls {
+    display: block;
+  }
+  
+  .mobile-sort-select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    margin-bottom: 10px;
+  }
+  
+  /* モバイル表示時のソートボタンサイズを調整 */
+  .sort-button {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    margin-left: 2px;
+  }
+  
+  /* テーブルヘッダーの調整 */
+  th.sort-header {
+    padding-right: 5px !important;
+  }
+  
+  /* 表のレイアウト調整 */
+  .table-responsive {
+    overflow-x: auto;
+  }
+}
+
+/* さらに小さい画面での調整 */
+@media screen and (max-width: 576px) {
+  th.sort-header span {
+    display: block;
+    margin-bottom: 3px;
+  }
+  
+  .sort-buttons-group {
+    white-space: nowrap;
+    display: inline-block;
+  }
+}
