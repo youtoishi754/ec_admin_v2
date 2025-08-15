@@ -110,8 +110,14 @@
     <table class="table table-hover">
     <thead>
       <tr>
-        <th>商品番号</th>
-        <th>商品名</th>
+        <th class="sort-header">
+          <span>商品番号</span>
+          <div class="sort-buttons-group placeholder-buttons"></div>
+        </th>
+        <th class="sort-header">
+          <span>商品名</span>
+          <div class="sort-buttons-group placeholder-buttons"></div>
+        </th>
         <th class="sort-header">
           <span>金額</span>
           <div class="sort-buttons-group">

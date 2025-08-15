@@ -1,10 +1,26 @@
 /* 商品情報一覧のソート機能用CSS */
 
+/* すべてのテーブルヘッダーセルに統一スタイルを適用 */
+.table-hover thead th {
+  height: 60px; /* 明示的に高さを設定 */
+  vertical-align: top; /* 上揃えにする */
+  position: relative;
+}
+
 /* ソート可能なヘッダーの基本スタイル */
 th.sort-header {
   position: relative;
   white-space: nowrap;
   user-select: none;
+  height: 60px; /* 明示的に高さを設定 */
+  vertical-align: top; /* 上揃えにする */
+}
+
+/* ヘッダー内のspan要素を統一 */
+th.sort-header span {
+  display: inline-block;
+  margin-bottom: 5px;
+  padding-top: 5px;
 }
 
 /* ソートボタンの基本スタイル */
@@ -48,6 +64,22 @@ th.sort-header:hover {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
+/* ソートボタンなしの項目のプレースホルダー */
+.placeholder-buttons {
+  display: inline-block;
+  height: 24px; /* ソートボタンと同じ高さ */
+  width: 54px; /* ソートボタン2つ分の幅 */
+  visibility: hidden;
+  position: relative;
+}
+
+/* すべてのsort-buttons-groupに同じ高さを設定 */
+.sort-buttons-group {
+  height: 24px;
+  display: block;
+  clear: both;
+}
+
 /* モバイル用ソートコントロール */
 .mobile-sort-controls {
   display: none;
@@ -82,6 +114,22 @@ th.sort-header:hover {
     margin-left: 2px;
   }
   
+  /* モバイル表示時のプレースホルダーの高さも調整 */
+  .placeholder-buttons {
+    height: 20px;
+    width: 44px; /* モバイルサイズのボタン2つ分 */
+  }
+  
+  /* モバイル表示時のヘッダー高さ調整 */
+  th.sort-header {
+    height: 50px;
+  }
+  
+  /* すべてのsort-buttons-groupのモバイル高さ調整 */
+  .sort-buttons-group {
+    height: 20px;
+  }
+  
   /* テーブルヘッダーの調整 */
   th.sort-header {
     padding-right: 5px !important;
@@ -95,13 +143,21 @@ th.sort-header:hover {
 
 /* さらに小さい画面での調整 */
 @media screen and (max-width: 576px) {
+  /* すべてのヘッダーセルの高さを固定 */
+  th.sort-header {
+    height: 70px;
+  }
+  
+  /* すべてのヘッダー内のspanを同じように配置 */
   th.sort-header span {
     display: block;
     margin-bottom: 3px;
+    padding-top: 5px;
   }
   
   .sort-buttons-group {
     white-space: nowrap;
-    display: inline-block;
+    display: block;
+    clear: both;
   }
 }
